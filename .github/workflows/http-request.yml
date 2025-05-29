@@ -1,0 +1,13 @@
+name: Scheduled HTTP Request
+
+on:
+  schedule:
+    # Запускать каждые 10 минут
+    - cron: '*/10 * * * *'
+
+jobs:
+  http-request:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Ping site
+      run: curl -X GET "https://$NODE_SUBDOMAIN.onrender.com" --verbose
