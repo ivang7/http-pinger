@@ -12,4 +12,5 @@ jobs:
     - name: Ping site
       env:
         NODE_SUBDOMAIN_1: ${{ secrets.NODE_SUBDOMAIN }}
-      run: curl -X GET https://$NODE_SUBDOMAIN.onrender.com --verbose
+        SITE_URL: https://${{ secrets.NODE_SUBDOMAIN }}.onrender.com
+      run: curl $SITE_URL --verbose
