@@ -2,12 +2,14 @@ name: Scheduled HTTP Request
 
 on:
   schedule:
-    # Запускать каждые 10 минут
     - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   http-request:
     runs-on: ubuntu-latest
     steps:
     - name: Ping site
+      env:
+        NODE_SUBDOMAIN: ${{ secrets.NODE_SUBDOMAIN }}
       run: curl -X GET "https://$NODE_SUBDOMAIN.onrender.com" --verbose
